@@ -11,7 +11,7 @@ export class AppConsts {
     };
 
     static readonly localization = {
-        defaultLocalizationSourceName: 'boilerplate-angular'
+        defaultLocalizationSourceName: 'BoilerplateAngular'
     };
 
     static readonly authorization = {

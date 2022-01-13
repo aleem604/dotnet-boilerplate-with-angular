@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class boilerplate-angularTemplatePage {
+export class BoilerplateAngularTemplatePage {
   navigateTo() {
     return browser.get('/');
   }

@@ -1,10 +1,10 @@
-import { boilerplate-angularTemplatePage } from './app.po';
+import { BoilerplateAngularTemplatePage } from './app.po';
 
-describe('boilerplate-angular App', function() {
-  let page: boilerplate-angularTemplatePage;
+describe('BoilerplateAngular App', function() {
+  let page: BoilerplateAngularTemplatePage;
 
   beforeEach(() => {
-    page = new boilerplate-angularTemplatePage();
+    page = new BoilerplateAngularTemplatePage();
   });
 
   it('should display message saying app works', () => {

@@ -7,7 +7,7 @@ $oldCompanyName="AbpCompanyName"
 $newCompanyName="YourCompanyName"
 
 # project name placeholder
-$oldProjectName="boilerplate-angular"
+$oldProjectName="BoilerplateAngular"
 # your project name
 $newProjectName="YourProjectName"
 
