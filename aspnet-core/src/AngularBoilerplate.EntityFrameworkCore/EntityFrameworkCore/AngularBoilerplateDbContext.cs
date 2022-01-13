@@ -1,9 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AngularBoilerplate.Products;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -52,6 +55,11 @@ public class AngularBoilerplateDbContext :
 
     #endregion
 
+    #region products
+    public DbSet<Product> Products { get; set; }
+    #endregion Products
+
+
     public AngularBoilerplateDbContext(DbContextOptions<AngularBoilerplateDbContext> options)
         : base(options)
     {
@@ -74,12 +82,37 @@ public class AngularBoilerplateDbContext :
         builder.ConfigureTenantManagement();
 
         /* Configure your own tables/entities inside here */
+        var allDbSets = typeof(AngularBoilerplateDbContext).GetProperties()
+            .Where(prop => prop.PropertyType.Name == "DbSet`1")
+            .Select(p => new
+            {
+                Type = p.PropertyType.GetGenericArguments()[0],
+                p.Name
+            })
+            .Where(i => i.Name != "Users");
 
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(AngularBoilerplateConsts.DbTablePrefix + "YourEntities", AngularBoilerplateConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
-    }
+        foreach (var dbSet in allDbSets)
+		{
+            var type = dbSet.Type;
+            builder.Entity(type, i =>
+            {
+                i.ToTable(AngularBoilerplateConsts.DbTablePrefix + dbSet.Name, AngularBoilerplateConsts.DbSchema);
+                i.ConfigureByConvention();
+            });
+		}
+
+
+
+
+
+
+
+		//builder.Entity<Product>(b =>
+		//{
+		//	b.ToTable(AngularBoilerplateConsts.DbTablePrefix + "Product", AngularBoilerplateConsts.DbSchema);
+		//	b.ConfigureByConvention(); //auto configure for the base class props
+  //          b.Property(i => i.Name).IsRequired().HasMaxLength(100);
+									  
+		//});
+	}
 }
