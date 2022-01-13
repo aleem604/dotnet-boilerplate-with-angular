@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Abp.AutoMapper;
+using Abp.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Volo.Abp.Application.Dtos;
 
 namespace AngularBoilerplate.Products
@@ -19,11 +18,14 @@ namespace AngularBoilerplate.Products
 
 	}
 
-	public class ProductDto : EntityDto<int>
+	[AutoMapFrom(typeof(Product))]
+	[AutoMapTo(typeof(Product))]
+	public class ProductDto : EntityDto<int>, IMustHaveTenant
 	{
 		public string Name { get; set; }
 		public double Price { get; set; }
 		public int Quantity { get; set; }
 		public ProductType ProductType { get; set; }
+		public int TenantId { get; set; }
 	}
 }
