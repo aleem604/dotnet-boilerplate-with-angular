@@ -251,6 +251,12 @@ paket-files/
 .idea/
 *.sln.iml
 
-src/BoilerplateAngular.Web.Mvc/secrets.json
-src/BoilerplateAngular.Web.Host/secrets.json
-src/BoilerplateAngular.Migrator/secrets.json
+# AngularBoilerplate
+src/AngularBoilerplate.Web/Logs/*
+src/AngularBoilerplate.Web.Host/Logs/*
+src/AngularBoilerplate.IdentityServer/Logs/*
+src/AngularBoilerplate.HttpApi.Host/Logs/*
+src/AngularBoilerplate.HttpApi.Host/Logs/*
+src/AngularBoilerplate.DbMigrator/Logs/*
+src/AngularBoilerplate.Blazor.Server/Logs/*
+src/AngularBoilerplate.Blazor.Server.Tiered/Logs/*
